@@ -82,16 +82,26 @@ iframe{ margin-top:20px; border-radius:10px; }
 
 <script>
 /* BGM */
-function toggleBGM(){const bgm=document.getElementById("bgm"),btn=document.getElementById("bgmBtn"); if(bgm.paused){bgm.play(); btn.innerText="BGM OFF"}else{bgm.pause(); btn.innerText="BGM ON"}}
+function toggleBGM(){
+  const bgm=document.getElementById("bgm"),
+        btn=document.getElementById("bgmBtn");
+  if(bgm.paused){
+    bgm.play();
+    btn.innerText="BGM OFF";
+  } else {
+    bgm.pause();
+    btn.innerText="BGM ON";
+  }
+}
 
 /* 随机 */
 function random(arr){return arr[Math.floor(Math.random()*arr.length)]}
 
 const songs={
-运动:["Super Shy - NewJeans","Drama - aespa","Love Dive - IVE","One Of A Kind - G-DRAGON","911 - Lady Gaga","BANG BANG BANG - BIGBANG","RHYTHM TA - iKON","Energetic - Wanna One","FLOWER SHOWER - 泫雅","Love In My Heart - BABYMONSTER","BOOMERAN - Wanna One","SAPPY - Red Velvet","THUNDER - SEVENTEEN","WHISTLE - BLACKPINK","How You Like That - BLACKPINK"], 
-放松:["Love Poem - IU","Fine - Taeyeon","Find Me - TAEYEON","End to Start - NCT127","Fine - TAEYEON","우린 결국 다시 만날 운명이었지 (Destiny) - MAMAMOO","평온 (Serene) - 泫雅","LAST DANCE - BIGBANG","Friend - BTOB","Something New - TAEYEON","귀 좀 막아줘 (Organic song) - PENTAGON / E'DAWN","GIRL GIRL GIRL - Triple H"], 
-慢歌:["Beautiful - Crush","How can I love - AKMU","11:11 - TAEYEON","Lonely - TAEYEON & 钟铉","우주를 줄게 - 刘宪华","IF YOU - BIGBANG","너의 이름을 - Wanna One","Brave Enough - 李遐怡","Journey - WOODZ","그 해 여름 (두 번째 이야기) - INFINITE","I Believe - 申升勋","Let Go - BTS","스포일러 (SPOILER) - Epik High"], 
-轻快:["Hype Boy - NewJeans","ASAP - STAYC","LOVE - STAYC","Black Suit - SUPER JUNIOR","7시에 들어줘 (Feat. Peder Elias) - BSS / Peder Elias","MAKUAKE - eill","제주도의 푸른 밤 - TAEYEON","Good to Me - SEVENTEEN","Home - SEVENTEEN","1분 1초 - Epik High","21 - DEAN","짠 - GFRIEND","Daydream - j-hope","We Go - aespa","툭하면 톡 - TWICE","쟤가 걔야 - MAMAMOO"]
+  运动:["Super Shy - NewJeans","Drama - aespa","Love Dive - IVE","One Of A Kind - G-DRAGON","911 - Lady Gaga","BANG BANG BANG - BIGBANG","RHYTHM TA - iKON","Energetic - Wanna One","FLOWER SHOWER - 泫雅","Love In My Heart - BABYMONSTER","BOOMERAN - Wanna One","SAPPY - Red Velvet","THUNDER - SEVENTEEN","WHISTLE - BLACKPINK","How You Like That - BLACKPINK"], 
+  放松:["Love Poem - IU","Fine - Taeyeon","Find Me - TAEYEON","End to Start - NCT127","Fine - TAEYEON","우린 결국 다시 만날 운명이었지 (Destiny) - MAMAMOO","평온 (Serene) - 泫雅","LAST DANCE - BIGBANG","Friend - BTOB","Something New - TAEYEON","귀 좀 막아줘 (Organic song) - PENTAGON / E'DAWN","GIRL GIRL GIRL - Triple H"], 
+  慢歌:["Beautiful - Crush","How can I love - AKMU","11:11 - TAEYEON","Lonely - TAEYEON & 钟铉","우주를 줄게 - 刘宪华","IF YOU - BIGBANG","너의 이름을 - Wanna One","Brave Enough - 李遐怡","Journey - WOODZ","그 해 여름 (두 번째 이야기) - INFINITE","I Believe - 申升勋","Let Go - BTS","스포일러 (SPOILER) - Epik High"], 
+  轻快:["Hype Boy - NewJeans","ASAP - STAYC","LOVE - STAYC","Black Suit - SUPER JUNIOR","7시에 들어줘 (Feat. Peder Elias) - BSS / Peder Elias","MAKUAKE - eill","제주도의 푸른 밤 - TAEYEON","Good to Me - SEVENTEEN","Home - SEVENTEEN","1분 1초 - Epik High","21 - DEAN","짠 - GFRIEND","Daydream - j-hope","We Go - aespa","툭하면 톡 - TWICE","쟤가 걔야 - MAMAMOO"]
 }
 
 const stageVideos={
@@ -107,30 +117,84 @@ const stageVideos={
 }
 const allVideos=[].concat(...Object.values(stageVideos))
 
-function showTodayResult(data){document.getElementById("card").classList.add("flip"); document.getElementById("result").innerHTML=`<h2>✨ 今日啾势</h2><p>💿 推荐歌曲：${data.song}</p><p>🎨 幸运色：${data.colorChoice}</p><p>🌟 运势：${data.fortuneText}</p><h3>🎬 今日舞台</h3>${data.video&&allVideos.includes(data.video)?`<iframe src="https://player.bilibili.com/player.html?bvid=${data.video}" width="100%" height="420" allowfullscreen allow="autoplay; fullscreen"></iframe><br><a class="watch" href="https://www.bilibili.com/video/${data.video}" target="_blank">▶ 去Bilibili观看</a>`:`<p>⚠ 今日舞台视频不可用</p>`}`
+function showTodayResult(data){
+  document.getElementById("card").classList.add("flip");
+  document.getElementById("result").innerHTML=`<h2>✨ 今日啾势</h2>
+  <p>💿 推荐歌曲：${data.song}</p>
+  <p>🎨 幸运色：${data.colorChoice}</p>
+  <p>🌟 运势：${data.fortuneText}</p>
+  <h3>🎬 今日舞台</h3>
+  ${data.video && allVideos.includes(data.video)?
+    `<iframe src="https://player.bilibili.com/player.html?bvid=${data.video}" width="100%" height="420" allowfullscreen allow="autoplay; fullscreen"></iframe>
+    <br><a class="watch" href="https://www.bilibili.com/video/${data.video}" target="_blank">▶ 去Bilibili观看</a>`:
+    `<p>⚠ 今日舞台视频不可用</p>`}`;
 }
 
-window.addEventListener("load",()=>{const today=new Date().toDateString(); let todayData=JSON.parse(localStorage.getItem("todayData")||"null"); let times=parseInt(localStorage.getItem("drawTimes")||"0"); const lastDate=localStorage.getItem("fortuneDate"); if(lastDate!==today){times=0; localStorage.setItem("drawTimes",0)} updateRemaining(2-times); if(todayData&&lastDate===today){showTodayResult(todayData)}})
+window.addEventListener("load",()=>{
+  const today=new Date().toDateString();
+  let todayData=JSON.parse(localStorage.getItem("todayData")||"null");
+  let times=parseInt(localStorage.getItem("drawTimes")||"0");
+  const lastDate=localStorage.getItem("fortuneDate");
+  if(lastDate!==today){times=0; localStorage.setItem("drawTimes",0)}
+  updateRemaining(2-times);
+  if(todayData && lastDate===today){showTodayResult(todayData)}
+})
 
 function drawFortune(){let times=parseInt(localStorage.getItem("drawTimes")||"0"); if(times>=2)return; generateFortune()}
 function repeatFortune(){let times=parseInt(localStorage.getItem("drawTimes")||"0"); if(times>=2)return; generateFortune()}
 
-function generateFortune(){const card=document.getElementById("card"); card.classList.remove("flip");
-let musicType=document.getElementById("musicType").value; let colorChoice=document.getElementById("colorChoice").value;
-const songList=songs[musicType]||[].concat(...Object.values(songs)); const song=random(songList);
-let video=null;
-if(colorChoice==="未知"){const colors=Object.keys(stageVideos); colorChoice=random(colors); video=random(stageVideos[colorChoice])} else if(stageVideos[colorChoice]&&stageVideos[colorChoice].length>0){video=random(stageVideos[colorChoice])} else{video=random(allVideos)}
-const fortunes=["今日好运连连 ✨","小心谨慎,稳中求胜 ⚠️","遇见惊喜的可能 💖","适合休息与放松 🌿","挑战与成长并存 💪"]; const fortuneText=random(fortunes);
-const todayData={musicType,colorChoice,song,video,fortuneText}; const today=new Date().toDateString(); localStorage.setItem("fortuneDate",today); localStorage.setItem("todayData",JSON.stringify(todayData));
-let drawTimes=parseInt(localStorage.getItem("drawTimes")||"0"); drawTimes++; localStorage.setItem("drawTimes",drawTimes); updateRemaining(2-drawTimes);
-card.classList.add("flip"); setTimeout(()=>{showTodayResult(todayData)},800)}
+function generateFortune(){
+  const card=document.getElementById("card"); card.classList.remove("flip");
+  let musicType=document.getElementById("musicType").value;
+  let colorChoice=document.getElementById("colorChoice").value;
+  const songList=songs[musicType]||[].concat(...Object.values(songs));
+  const song=random(songList);
+  let video=null;
+  if(colorChoice==="未知"){
+    const colors=Object.keys(stageVideos); colorChoice=random(colors);
+    video=random(stageVideos[colorChoice])
+  } else if(stageVideos[colorChoice] && stageVideos[colorChoice].length>0){
+    video=random(stageVideos[colorChoice])
+  } else {
+    video=random(allVideos)
+  }
+  const fortunes=["今日好运连连 ✨","小心谨慎,稳中求胜 ⚠️","遇见惊喜的可能 💖","适合休息与放松 🌿","挑战与成长并存 💪"];
+  const fortuneText=random(fortunes);
+  const todayData={musicType,colorChoice,song,video,fortuneText};
+  const today=new Date().toDateString();
+  localStorage.setItem("fortuneDate",today);
+  localStorage.setItem("todayData",JSON.stringify(todayData));
+  let drawTimes=parseInt(localStorage.getItem("drawTimes")||"0");
+  drawTimes++; localStorage.setItem("drawTimes",drawTimes); updateRemaining(2-drawTimes);
+  card.classList.add("flip");
+  setTimeout(()=>{showTodayResult(todayData)},800)
+}
 
 function updateRemaining(count){document.getElementById("remaining").innerText=`今日剩余抽取次数：${count}`}
 
-const canvas=document.getElementById("stars"),ctx=canvas.,getContext("2d"); canvas.width=window.innerWidth; canvas.height=window.innerHeight; let stars=[]; for(let i=0;i<120;i++){stars.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*1.5, alpha:Math.random()*0.8+0.2, delta:(Math.random()*0.02)+0.005})}
-window.addEventListener("resize",()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight});
-function drawStars(){ctx.clearRect(0,0,canvas.width,canvas.height); stars.forEach(s=>{s.alpha+=s.delta; if(s.alpha>1||s.alpha<0.2) s.delta=-s.delta; ctx.fillStyle=`rgba(255,255,255,${s.alpha})`; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill()}); requestAnimationFrame(drawStars)} drawStars();
+/* 星空动画 */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let stars=[];
+for(let i=0;i<120;i++){
+  stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5,alpha:Math.random()*0.8+0.2,delta:(Math.random()*0.02)+0.005});
+}
+window.addEventListener("resize",()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight});
+function drawStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{
+    s.alpha+=s.delta;
+    if(s.alpha>1||s.alpha<0.2) s.delta=-s.delta;
+    ctx.fillStyle=`rgba(255,255,255,${s.alpha})`;
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+drawStars();
 </script>
-
 </body>
 </html>
