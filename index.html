@@ -3,162 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>今日啾势</title>
 
 <style>
-
 body{
-background:radial-gradient(circle at 50% 30%,#1a1a3a,#050510);
-color:#f5e6c8;
-font-family:Georgia,serif;
-text-align:center;
-margin:0;
-overflow-x:hidden;
+  background: radial-gradient(circle at top,#1b1b2f,#050510);
+  color:#f5e6c8;
+  font-family: Georgia, serif;
+  text-align:center;
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
 }
-
-body::before{
-content:"";
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:url("https://www.transparenttextures.com/patterns/stardust.png");
-opacity:0.3;
-pointer-events:none;
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
 }
-
+.bgm{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#222;
+  color:#fff;
+  padding:8px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:14px;
+  letter-spacing:1px;
+  border:1px solid rgba(255,255,255,0.15);
+  transition:all 0.3s;
+}
+.bgm:hover{
+  background:#333;
+  transform:scale(1.05);
+}
 .container{
-max-width:700px;
-margin:auto;
-padding:30px 20px;
+  max-width:700px;
+  margin:auto;
+  padding:30px 20px;
 }
-
 .main-title{
-font-size:clamp(42px,10vw,70px);
-letter-spacing:4px;
-text-shadow:0 0 20px #d4af37;
+  font-size:clamp(40px,9vw,68px);
+  letter-spacing:4px;
+  text-shadow:0 0 20px #d4af37;
 }
-
 .sub-title{
-color:#cbb78c;
-margin-top:-10px;
+  color:#cbb78c;
+  margin-top:-10px;
 }
-
 .divider{
-margin:20px 0;
-color:#d4af37;
+  margin:20px 0 30px 0;
+  font-size:22px;
+  color:#d4af37;
+  letter-spacing:8px;
 }
-
 .description{
-margin-bottom:30px;
+  font-size:16px;
+  margin-bottom:30px;
 }
-
-#quiz p{
-margin:15px 0 5px;
-}
-
 select{
-width:80%;
-padding:10px;
-border-radius:8px;
-border:1px solid #d4af37;
-background:#14142a;
-color:white;
+  width:80%;
+  padding:10px;
+  margin-bottom:15px;
+  border-radius:8px;
+  border:1px solid #d4af37;
+  background:#14142a;
+  color:white;
 }
-
 .card{
-width:220px;
-height:340px;
-margin:40px auto;
-background:linear-gradient(145deg,#1f1f3d,#2e2e5a);
-border-radius:18px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22px;
-cursor:pointer;
-border:2px solid #d4af37;
-box-shadow:0 0 25px rgba(212,175,55,0.6);
-transition:0.6s;
+  width:240px;
+  height:360px;
+  margin:40px auto;
+  perspective:1200px;
+  cursor:pointer;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
-
-.card:hover{
-transform:scale(1.05) rotateY(10deg);
+.card-inner{
+  width:100%;
+  height:100%;
+  position:relative;
+  transition:transform 0.8s;
+  transform-style:preserve-3d;
+  border-radius:20px;
 }
-
-#result{
-margin-top:30px;
-padding:20px;
-border:1px solid #d4af37;
-border-radius:12px;
-background:rgba(0,0,0,0.4);
+.card.flip .card-inner{
+  transform:rotateY(180deg);
 }
-
-.result-title{
-font-size:24px;
-color:#d4af37;
-margin-bottom:10px;
+.card-front,.card-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:20px;
+  border:2px solid #d4af37;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  backface-visibility:hidden;
+  text-align:center;
+  padding:10px;
 }
-
-#videoBox{
-margin-top:25px;
+.card-front{
+  background: linear-gradient(145deg,#1f1f3d,#2e2e5a);
+  color:#fff;
+  font-size:28px;
+  font-weight:bold;
 }
-
+.card-back{
+  background:#d4af37;
+  color:black;
+  transform:rotateY(180deg);
+  font-size:18px;
+  line-height:1.5;
+}
+.result{
+  margin-top:30px;
+}
 iframe{
-border-radius:10px;
+  margin-top:20px;
+  border-radius:10px;
 }
-
-.watch-btn{
-display:inline-block;
-margin-top:15px;
-padding:10px 20px;
-background:#d4af37;
-color:black;
-text-decoration:none;
-border-radius:8px;
-font-weight:bold;
+.watch{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 18px;
+  background:#d4af37;
+  color:black;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
 }
-
 .footer{
-margin-top:80px;
-font-size:14px;
-color:#9a8f6a;
+  margin-top:80px;
+  font-size:14px;
+  color:#9a8f6a;
 }
-
+.button-repeat{
+  margin-top:15px;
+  padding:10px 18px;
+  background:#cbb78c;
+  color:black;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:all 0.3s;
+}
+.button-repeat:hover{
+  background:#d4af37;
+}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<canvas id="stars"></canvas>
 
+<div class="bgm" onclick="toggleBGM()" id="bgmBtn">🎵 BGM</div>
+<audio id="bgm" loop>
+<source src="https://cdn.pixabay.com/audio/2022/10/25/audio_946c0c62d1.mp3">
+</audio>
+
+<div class="container">
 <h1 class="main-title">🔮 今日啾势</h1>
 <p class="sub-title">Jiwoo Daily Fortune</p>
-
 <div class="divider">✦ ✦ ✦</div>
-
-<p class="description">回答5个问题抽取今日运势</p>
+<p class="description">
+回答5个问题<br>
+抽取属于你的今日幸运舞台
+</p>
 
 <div id="quiz">
-
 <p>1 今天的心情</p>
 <select>
 <option>开心</option>
 <option>平静</option>
-<option>有点累</option>
 <option>兴奋</option>
+<option>有点累</option>
 <option>难过</option>
-<option>委屈</option>
 </select>
 
 <p>2 今天的天气</p>
 <select>
+<option>晴天</option>
 <option>阴天</option>
-<option>炎热</option>
 <option>雨天</option>
-<option>多云</option>
 <option>雪天</option>
 <option>有风</option>
 </select>
@@ -171,347 +203,197 @@ color:#9a8f6a;
 <option>轻快</option>
 </select>
 
-<p>4 选择今日约会地点</p>
+<p>4 今天想去哪里</p>
 <select>
 <option>公园</option>
-<option>影院</option>
-<option>游戏厅</option>
-<option>居家</option>
 <option>练习室</option>
-<option>网吧</option>
-<option>餐厅</option>
-<option>JYP大楼</option>
+<option>咖啡厅</option>
+<option>JYP</option>
+<option>电影院</option>
 </select>
 
-<p>5 今天想和什么颜色的JIWOO约会</p>
+<p>5 想和什么颜色的JIWOO约会</p>
 <select id="colorChoice">
 <option>白色</option>
-<option>粉色</option>
 <option>黑色</option>
 <option>蓝色</option>
+<option>粉色</option>
 <option>绿色</option>
 <option>紫色</option>
-<option>黄色</option>
 <option>红色</option>
+<option>黄色</option>
 <option>灰色</option>
 <option>未知</option>
 </select>
-
 </div>
 
-<div class="card" onclick="drawFortune()">
-🃏 点击翻开塔罗
+<div class="card" id="card" onclick="drawFortune()">
+<div class="card-inner">
+<div class="card-front">🃏 点击抽取</div>
+<div class="card-back">✨ 今日运势</div>
+</div>
 </div>
 
-<div id="result"></div>
-<div id="videoBox"></div>
+<button class="button-repeat" onclick="repeatFortune()">🔄 再抽一次</button>
+
+<div id="result" class="result"></div>
 
 <div class="footer">
 @Jiwoo_Fairyland / JiwooChinaBar<br>
 玩法仅供娱乐
 </div>
-
 </div>
 
 <script>
-
-function random(arr){
-return arr[Math.floor(Math.random()*arr.length)]
+/* BGM */
+function toggleBGM(){
+    const bgm=document.getElementById("bgm")
+    const btn=document.getElementById("bgmBtn")
+    if(bgm.paused){
+        bgm.play()
+        btn.innerText="BGM OFF"
+    }else{
+        bgm.pause()
+        btn.innerText="BGM ON"
+    }
 }
 
-const colors=[
-"白色","粉色","黑色","蓝色","绿色","紫色","黄色","红色","灰色"
-]
-
-const yi=[
-"听音乐","散步","追星","拍照","喝咖啡","看舞台","刷视频","出门","吃轻食","尝试新鲜事物","运动","慢跑","和朋友聊聊天","打游戏","购买不舍得东西","购入衣服","呼吸新鲜空气","看电影","跳舞","悬疑剧","购物","躺平"
-]
-
-const ji=[
-"熬夜","emo","拖延","不吃饭","压力过大","掉眼泪","打游戏","与人合作"
-]
+/* 随机 */
+function random(arr){ return arr[Math.floor(Math.random()*arr.length)] }
 
 const songs={
-舞曲:["New Jeans - Super Shy","IVE - Love Dive","Aespa - Drama"],
-抒情:["IU - Love Poem","Taeyeon - Fine"],
-慢歌:["AKMU - How can I love","Crush - Beautiful"],
-轻快:["New Jeans - Hype Boy","STAYC - ASAP"]
+舞曲:["Super Shy - NewJeans","Drama - aespa","Love Dive - IVE"],
+抒情:["Love Poem - IU","Fine - Taeyeon"],
+慢歌:["Beautiful - Crush","How can I love - AKMU"],
+轻快:["Hype Boy - NewJeans","ASAP - STAYC"]
 }
-
 
 const stageVideos={
+白色:["BV1Z3veB1EWZ","BV1vFySBkEkz","BV1SMW4zNECT","BV1JRZmY9E4S","BV1WWZcYbEgm","BV1jToyYKEzC","BV1ZEXNYSEQ3","BV1EvkBYQEhY","BV1xdqZY3E8N","BV1eeWZeuELV","BV1Wx421m7Fn","BV1by421h7gm","BV1Bv421C7XY","BV1xy421a7ZY","BV1Ni4y1s7p7","BV1pe411m7Ju","BV1ku4y1U7ar","BV1Rx4y1T79t","BV1C24y1h7QK","BV1UG4y1C7R5","BV19Y41127x6","BV1aa411H7oi","BV1ea411W75N","BV16Y4y1n7sg","BV1eW4y1z7r4","BV1Ur4y1b7B1"],
+黑色:["BV1mhi7BQEGS","BV1BhsYzqEqP","BV1qWWRzZExu","BV1YcWBzzEM4","BV1djbPzFExq","BV1BddHYgEFF","BV1ArZRY2ETs","BV1ArZRY2ETs","BV1ArZRY2ETs","BV15RXkYDEJ8","BV19BXCYnEVR","BV1rqX6YsEtj","BV14ipFeZEK5","BV1TKHFexENr","BV1W6WSeAEgW","BV1nf421q7GJ","BV1cK421173Z","BV17Q4y1w7KL","BV1DN4y1p71G","BV1mL411m73E","BV1dk4y1i7aj","BV1Ta4y1M7Wy","BV1Rx4y1T79t","BV1Ld4y1a7mn","BV1ne4y1K7k7","BV1B44y1f7Ha","BV14S4y1p7r3"],
+蓝色:["BV1QXBvB7Ebd","BV1zjWnzvEb7","BV1QtWEzJERw","BV1umWiz8EjT","BV1gBZbYXEf6","BV1AD46eLEw7","BV1AD46eLEw7","BV1BYpceSEZM","BV14fHKeVEAo","BV1vrejeUEEz","BV1wb421v7Hw","BV1Bv421C7XY","BV1Mp421f79L","BV1Gh4y1k7sH","BV1UF411Q7GT","BV1Go4y1h7oU","BV1hL411Q7sk","BV1Sb411d72o","BV1dd4y1s7EW","BV1Fd4y1r7b8","BV1zB4y1v7fC"],
+粉色:["BV1VWsozhEs9","BV1FysHeeq","BV13w4m1i7Em","BV1Xm42157Ta","BV1y1421U7QG","BV15m411f7UL","BV1Gx4y117dF","BV1bc411c7Zn","BV1qV411N7wG","BV1xo4y1K75C","BV1hL411Q7sk","BV1Xs4y1L7DA","BV1Se411V7Kd"],
+绿色:["BV1mMWsz4EFu","BV1UbWqzhEs7","BV1sJ4m1b7zn","BV1R7421K7Su","BV1Gk4y1D75P","BV1iF411979C","BV1rj411d7ad","BV1te4y1V7vU","BV1Me411G7aa","BV1U3411w7BG"],
+紫色:["BV1itpbeoE5Y","BV1FZHuerE5Y","BV1WNHTeuE9q","BV1aKWreWEko","BV1EW4y1d7Qf","BV1ik4y1K7Zp","BV1ns4y1E7FT","BV1Xg4y1u7z9","BV1zB4y1v7fC"],
+红色:["BV1GvFTeAETZ","BV1bh1cY6EDd","BV1H22EY7Ebb","BV1S12LYnE2p","BV1Eo1qYbERC","BV1bo1mYuE71","BV1Jx4y127Tk","BV12Z421B7A7","BV1QC4y1k7mJ","BV1cc41187Ra","BV1pg4y1G7gB","BV1nv4y1V7sX","BV1gs4y1U7GW","BV1Rx4y1T79t","BV1LT41127nj"],
+黄色:["BV1FUcreLEus","BV1Eik6YfE9C","BV1EBk6YtEeK","BV1Hek6YcEPh","BV14PkrY6Esw","BV1m3specEKv","BV1gx4y147RZ","BV1Mx4y1n7d9","BV1CD421u7ss","BV1X7421P7qj","BV1y94y1B7uN","BV17W4y1X7B7","BV1Pj411A7GU","BV1aM4y127z8","BV1Jg411t7Rt","BV1Ng41187fj","BV1RN4y1c72n","BV1GD4y1C7ob","BV1er4y1M7x9"],
+灰色:["BV1WWZcYbEgm","BV1YnoxYyEEj","BV1yVQ2Y3ELx","BV12xWoeREHB","BV1cXW9e6E44","BV1CoW5eeEUd","BV1CoW5eeEUd","BV1Zx42117eE","BV1ov421k745","BV1ov421k745","BV1ov421k745","BV1Bv421C7XY","BV1Mp421f79L","BV1YV411T7vm","BV1fo4y1J7rm","BV1hs4y1N7hb","BV1Ej411A75H","BV1Lo4y1W7wU","BV1Lv4y1V7yb","BV1fY411N7WM","BV16S4y1p77R","BV1Bv4y1u7nG","BV1df4y1o7HZ","BV1Qr4y1g7k2","BV1gP4y1u7Tu"]
+}
+const allVideos = [].concat(...Object.values(stageVideos))
 
-黑色:[
-{bvid:"BV1mhi7BQEGS"},
-{bvid:"BV1BhsYzqEqP"},
-{bvid:"BV1qWWRzZExu"}
-{bvid:"BV1YcWBzzEM4"}
-{bvid:"BV1djbPzFExq"}
-{bvid:"BV1BddHYgEFF"}
-{bvid:"BV1ArZRY2ETs"}
-{bvid:"BV1EFZNYaEd4"}
-{bvid:"BV15RXkYDEJ8"}
-{bvid:"BV19BXCYnEVR"}
-{bvid:"BV1rqX6YsEtj"}
-{bvid:"BV14ipFeZEK5"}
-{bvid:"BV1TKHFexENr"}
-{bvid:"BV1W6WSeAEgW"}
-{bvid:"BV1nf421q7GJ"}
-{bvid:"BV1cK421173Z"}
-{bvid:"BV17Q4y1w7KL"}
-{bvid:"BV1DN4y1p71G"}
-{bvid:"BV1mL411m73E"}
-{bvid:"BV1dk4y1i7aj"}
-{bvid:"BV1Ta4y1M7Wy"}
-{bvid:"BV1Rx4y1T79t"}
-{bvid:"BV1Ld4y1a7mn"}
-{bvid:"BV1ne4y1K7k7"}
-{bvid:"BV1B44y1f7Ha"}
-{bvid:"BV14S4y1p7r3"}
-],
-
-白色:[
-{bvid:"BV1Z3veB1EWZ"},
-{bvid:"BV1vFySBkEkz"}
-{bvid:"BV1SMW4zNECT"}
-{bvid:"BV1JRZmY9E4S"}
-{bvid:"BV1WWZcYbEgm"}
-{bvid:"BV1jToyYKEzC"}
-{bvid:"BV1ZEXNYSEQ3"}
-{bvid:"BV1EvkBYQEhY"}
-{bvid:"BV1xdqZY3E8N"}
-{bvid:"BV1eeWZeuELV"}
-{bvid:"BV1Wx421m7Fn"}
-{bvid:"BV1by421h7gm"}
-{bvid:"BV1Bv421C7XY"}
-{bvid:"BV1xy421a7ZY"}
-{bvid:"BV1Ni4y1s7p7"}
-{bvid:"BV1pe411m7Ju"}
-{bvid:"BV1ku4y1U7ar"}
-{bvid:"BV1Rx4y1T79t"}
-{bvid:"BV1C24y1h7QK"}
-{bvid:"BV1UG4y1C7R5"}
-{bvid:"BV19Y41127x6"}
-{bvid:"BV1aa411H7oi"}
-{bvid:"BV1ea411W75N"}
-{bvid:"BV16Y4y1n7sg"}
-{bvid:"BV1eW4y1z7r4"}
-{bvid:"BV1Ur4y1b7B1"}
-],
-
-灰色:[
-{bvid:"BV1WWZcYbEgm"},
-{bvid:"BV1YnoxYyEEj"}
-{bvid:"BV1yVQ2Y3ELx"}
-{bvid:"BV12xWoeREHB"}
-{bvid:"BV1cXW9e6E44"}
-{bvid:"BV1CoW5eeEUd"}
-{bvid:"BV1CoW5eeEUd"}
-{bvid:"BV1Zx42117eE"}
-{bvid:"BV1ov421k745"}
-{bvid:"BV1ov421k745"}
-{bvid:"BV1ov421k745"}
-{bvid:"BV1Bv421C7XY"}
-{bvid:"BV1Mp421f79L"}
-{bvid:"BV1YV411T7vm"}
-{bvid:"BV1fo4y1J7rm"}
-{bvid:"BV1hs4y1N7hb"}
-{bvid:"BV1Ej411A75H"}
-{bvid:"BV1Lo4y1W7wU"}
-{bvid:"BV1Lv4y1V7yb"}
-{bvid:"BV1fY411N7WM"}
-{bvid:"BV16S4y1p77R"}
-{bvid:"BV1Bv4y1u7nG"}
-{bvid:"BV1df4y1o7HZ"}
-{bvid:"BV1Qr4y1g7k2"}
-{bvid:"BV1gP4y1u7Tu"}
-],
-
-蓝色:[
-{bvid:"BV1QXBvB7Ebd"},
-{bvid:"BV1zjWnzvEb7"}
-{bvid:"BV1QtWEzJERw"}
-{bvid:"BV1umWiz8EjT"}
-{bvid:"BV1gBZbYXEf6"}
-{bvid:"BV1AD46eLEw7"}
-{bvid:"BV1AD46eLEw7"}
-{bvid:"BV1BYpceSEZM"}
-{bvid:"BV14fHKeVEAo"}
-{bvid:"BV1vrejeUEEz"}
-{bvid:"BV1wb421v7Hw"}
-{bvid:"BV1Bv421C7XY"}
-{bvid:"BV1Mp421f79L"}
-{bvid:"BV1Gh4y1k7sH"}
-{bvid:"BV1UF411Q7GT"}
-{bvid:"BV1Go4y1h7oU"}
-{bvid:"BV1hL411Q7sk"}
-{bvid:"BV1Sb411d72o"}
-{bvid:"BV1dd4y1s7EW"}
-{bvid:"BV1Fd4y1r7b8"}
-{bvid:"BV1zB4y1v7fC"}
-],
-
-绿色:[
-{bvid:"BV1mMWsz4EFu"},
-{bvid:"BV1UbWqzhEs7"}
-{bvid:"BV1sJ4m1b7zn"}
-{bvid:"BV1R7421K7Su"}
-{bvid:"BV1Gk4y1D75P"}
-{bvid:"BV1iF411979C"}
-{bvid:"BV1rj411d7ad"}
-{bvid:"BV1te4y1V7vU"}
-{bvid:"BV1Me411G7aa"}
-{bvid:"BV1U3411w7BG"}
-],
-
-粉色:[
-{bvid:"BV1VWsozhEs9"},
-{bvid:"BV1FysHeSEeq"}
-{bvid:"BV13w4m1i7Em"}
-{bvid:"BV1Xm42157Ta"}
-{bvid:"BV1y1421U7QG"}
-{bvid:"BV15m411f7UL"}
-{bvid:"BV1Gx4y117dF"}
-{bvid:"BV1bc411c7Zn"}
-{bvid:"BV1qV411N7wG"}
-{bvid:"BV1xo4y1K75C"}
-{bvid:"BV1hL411Q7sk"}
-{bvid:"BV1hL411Q7sk"}
-{bvid:"BV1Xs4y1L7DA"}
-{bvid:"BV1Se411V7Kd"}
-],
-
-紫色:[
-{bvid:"BV1itpbeoE5Y"}
-{bvid:"BV1FZHuerE5Y"}
-{bvid:"BV1WNHTeuE9q"}
-{bvid:"BV1aKWreWEko"}
-{bvid:"BV1EW4y1d7Qf"}
-{bvid:"BV1ik4y1K7Zp"}
-{bvid:"BV1ns4y1E7FT"}
-{bvid:"BV1Xg4y1u7z9"}
-{bvid:"BV1zB4y1v7fC"}
-],
-
-红色:[
-{bvid:"BV1GvFTeAETZ"}
-{bvid:"BV1bh1cY6EDd"}
-{bvid:"BV1bh1cY6EDd"}
-{bvid:"BV1H22EY7Ebb"}
-{bvid:"BV1S12LYnE2p"}
-{bvid:"BV1Eo1qYbERC"}
-{bvid:"BV1bo1mYuE71"}
-{bvid:"BV1Jx4y127Tk"}
-{bvid:"BV12Z421B7A7"}
-{bvid:"BV1QC4y1k7mJ"}
-{bvid:"BV1cc41187Ra"}
-{bvid:"BV1pg4y1G7gB"}
-{bvid:"BV1nv4y1V7sX"}
-{bvid:"BV1gs4y1U7GW"}
-{bvid:"BV1Rx4y1T79t"}
-{bvid:"BV1LT41127nj"}
-],
-
-黄色:[
-{bvid:"BV1FUcreLEus"}
-{bvid:"BV1Eik6YfE9C"}
-{bvid:"BV1EBk6YtEeK"}
-{bvid:"BV1Hek6YcEPh"}
-{bvid:"BV14PkrY6Esw"}
-{bvid:"BV1m3specEKv"}
-{bvid:"BV1gx4y147RZ"}
-{bvid:"BV1Mx4y1n7d9"}
-{bvid:"BV1CD421u7ss"}
-{bvid:"BV1X7421P7qj"}
-{bvid:"BV1y94y1B7uN"}
-{bvid:"BV17W4y1X7B7"}
-{bvid:"BV1Pj411A7GU"}
-{bvid:"BV1aM4y127z8"}
-{bvid:"BV1Jg411t7Rt"}
-{bvid:"BV1Ng41187fj"}
-{bvid:"BV1RN4y1c72n"}
-{bvid:"BV1GD4y1C7ob"}
-{bvid:"BV1er4y1M7x9"}
-]
-
+// ---------- 展示结果 ----------
+function showTodayResult(data){
+    const card=document.getElementById("card")
+    card.classList.add("flip")
+    document.getElementById("result").innerHTML = `
+        <h2>✨ 今日啾势</h2>
+        <p>💿 推荐歌曲：${data.song} (${data.musicType})</p>
+        <p>🎨 幸运色：${data.colorChoice}</p>
+        <p>🌟 运势：${data.fortuneText}</p>
+        <h3>🎬 今日舞台</h3>
+        ${data.video && allVideos.includes(data.video)
+            ? `<iframe src="https://player.bilibili.com/player.html?bvid=${data.video}" width="100%" height="420" allowfullscreen allow="autoplay; fullscreen"></iframe>
+               <br><a class="watch" href="https://www.bilibili.com/video/${data.video}" target="_blank">▶ 去Bilibili观看</a>`
+            : `<p>⚠ 今日舞台视频不可用</p>`
+        }
+    `
 }
 
-/* 汇总全部视频 */
+// ---------- 页面加载 ----------
+window.addEventListener("load", ()=>{
+    const today = new Date().toDateString()
+    let todayData = JSON.parse(localStorage.getItem("todayData") || "null")
+    let times = parseInt(localStorage.getItem("drawTimes") || "0")
+    const lastDate = localStorage.getItem("fortuneDate")
+    if(lastDate !== today){
+        times=0
+        localStorage.setItem("drawTimes",0)
+    }
+    if(todayData && lastDate === today){
+        showTodayResult(todayData)
+    }
+})
 
-const allVideos=Object.values(stageVideos).flat()
-
+// ---------- 抽卡 ----------
 function drawFortune(){
-
-const today=new Date().toDateString()
-
-if(localStorage.getItem("fortuneDate")==today){
-alert("今天已经抽过啾势啦 ✨")
-return
+    const times = parseInt(localStorage.getItem("drawTimes") || "0")
+    if(times >= 2) return
+    generateFortune()
 }
 
-localStorage.setItem("fortuneDate",today)
-
-const luckyColor=random(colors)
-const luckyNumber=Math.floor(Math.random()*99)+1
-const stage="#JJYU"+Math.floor(Math.random()*9000+1000)
-
-const musicType=document.getElementById("musicType").value
-const song=random(songs[musicType])
-
-const yiThing=random(yi)
-const jiThing=random(ji)
-
-const colorChoice=document.getElementById("colorChoice").value
-
-let video
-
-/* 未知颜色 → 随机视频 */
-
-if(colorChoice==="未知"){
-video=random(allVideos)
-}else{
-const list=stageVideos[colorChoice]
-video=list?random(list):random(allVideos)
+// ---------- 再抽一次 ----------
+function repeatFortune(){
+    const times = parseInt(localStorage.getItem("drawTimes") || "0")
+    if(times >= 2) return
+    generateFortune()
 }
 
-document.getElementById("result").innerHTML=`
+// ---------- 核心生成逻辑 ----------
+function generateFortune(){
+    const card=document.getElementById("card")
+    card.classList.remove("flip")
 
-<div class="result-title">✨ 今日啾势</div>
+    let musicType=document.getElementById("musicType").value
+    let colorChoice=document.getElementById("colorChoice").value
 
-<p>🎨 幸运色：${luckyColor}</p>
-<p>🎤 今日舞台：${stage}</p>
-<p>💿 推荐歌曲：${song}</p>
-<p>🔢 幸运数字：${luckyNumber}</p>
-<p>🚶 今日宜：${yiThing}</p>
-<p>⚠ 今日忌：${jiThing}</p>
+    const songList = songs[musicType] || [].concat(...Object.values(songs))
+    const song=random(songList)
 
-`
+    let video = null
 
-document.getElementById("videoBox").innerHTML=`
+    if(colorChoice==="未知"){
+        // 随机选择一个颜色，再从该颜色的视频里随机抽一个
+        const colors = Object.keys(stageVideos)
+        colorChoice = random(colors)  // 随机颜色
+        video = random(stageVideos[colorChoice])
+    } else if(stageVideos[colorChoice] && stageVideos[colorChoice].length>0){
+        video=random(stageVideos[colorChoice])
+    } else {
+        video=random(allVideos)
+    }
 
-<h3 style="color:#d4af37">🎬 今日舞台</h3>
+    const fortunes=["今日好运连连 ✨","小心谨慎，稳中求胜 ⚠️","遇见惊喜的可能 💖","适合休息与放松 🌿","挑战与成长并存 💪"]
+    const fortuneText=random(fortunes)
 
-<iframe
-src="https://player.bilibili.com/player.html?bvid=${video.bvid}"
-width="100%"
-height="420"
-allowfullscreen>
-</iframe>
+    const todayData={musicType,colorChoice,song,video,fortuneText}
+    const today=new Date().toDateString()
+    localStorage.setItem("fortuneDate",today)
+    localStorage.setItem("todayData",JSON.stringify(todayData))
 
-<br>
+    let drawTimes = parseInt(localStorage.getItem("drawTimes")||"0")
+    drawTimes++
+    localStorage.setItem("drawTimes",drawTimes)
 
-<a class="watch-btn"
-href="https://www.bilibili.com/video/${video.bvid}"
-target="_blank">
-
-▶ 去Bilibili观看
-
-</a>
-
-`
-
+    card.classList.add("flip")
+    setTimeout(()=>{showTodayResult(todayData)},800)
 }
 
+// ---------- 星空 ----------
+const canvas = document.getElementById("stars")
+const ctx = canvas.getContext("2d")
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+let stars = []
+for(let i=0;i<120;i++){
+    stars.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*1.5, alpha:Math.random()*0.8+0.2, delta:(Math.random()*0.02)+0.005})
+}
+window.addEventListener("resize",()=>{
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+})
+function drawStars(){
+    ctx.clearRect(0,0,canvas.width,canvas.height)
+    stars.forEach(s=>{
+        s.alpha+=s.delta
+        if(s.alpha>1||s.alpha<0.2) s.delta=-s.delta
+        ctx.fillStyle=`rgba(255,255,255,${s.alpha})`
+        ctx.beginPath()
+        ctx.arc(s.x,s.y,s.r,0,Math.PI*2)
+        ctx.fill()
+    })
+    requestAnimationFrame(drawStars)
+}
+drawStars()
 </script>
 
 </body>
