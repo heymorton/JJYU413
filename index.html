@@ -197,8 +197,8 @@ iframe{
 
 <p>3 想听什么类型的歌</p>
 <select id="musicType">
-<option>舞曲</option>
-<option>抒情</option>
+<option>运动</option>
+<option>放松</option>
 <option>慢歌</option>
 <option>轻快</option>
 </select>
@@ -262,10 +262,10 @@ function toggleBGM(){
 function random(arr){ return arr[Math.floor(Math.random()*arr.length)] }
 
 const songs={
-舞曲:["Super Shy - NewJeans","Drama - aespa","Love Dive - IVE"],
-抒情:["Love Poem - IU","Fine - Taeyeon"],
-慢歌:["Beautiful - Crush","How can I love - AKMU"],
-轻快:["Hype Boy - NewJeans","ASAP - STAYC"]
+运动:["Super Shy - NewJeans","Drama - aespa","Love Dive - IVE","One Of A Kind - G-DRAGON","911 - Lady Gaga","BANG BANG BANG - BIGBANG","RHYTHM TA - iKON","Energetic - Wanna One","FLOWER SHOWER - 泫雅","Love In My Heart - BABYMONSTER","BOOMERAN - Wanna One","SAPPY - Red Velvet","THUNDER - SEVENTEEN","WHISTLE - BLACKPINK","How You Like That - BLACKPINK"],
+放松:["Love Poem - IU","Fine - Taeyeon","Find Me - TAEYEON","End to Start - NCT127","Fine - TAEYEON","우린 결국 다시 만날 운명이었지 (Destiny) - MAMAMOO","평온 (Serene) - 泫雅","LAST DANCE - BIGBANG","Friend - BTOB","Something New - TAEYEON","귀 좀 막아줘 (Organic song) - PENTAGON / E'DAWN","GIRL GIRL GIRL - Triple H"],
+慢歌:["Beautiful - Crush","How can I love - AKMU"，"11:11 - TAEYEON","Lonely - TAEYEON & 钟铉","우주를 줄게 - 刘宪华","IF YOU - BIGBANG","너의 이름을 - Wanna One","Brave Enough - 李遐怡","Journey - WOODZ","그 해 여름 (두 번째 이야기) - INFINITE","I Believe - 申升勋","Let Go - BTS","스포일러 (SPOILER) - Epik High"],
+轻快:["Hype Boy - NewJeans","ASAP - STAYC","LOVE - STAYC","Black Suit - SUPER JUNIOR","7시에 들어줘 (Feat. Peder Elias) - BSS / Peder Elias","MAKUAKE - eill","제주도의 푸른 밤 - TAEYEON","Good to Me - SEVENTEEN","Home - SEVENTEEN","1분 1초 - Epik High","21 - DEAN","짠 - GFRIEND","Daydream - j-hope","We Go - aespa","툭하면 톡 - TWICE","쟤가 걔야 - MAMAMOO"]
 }
 
 const stageVideos={
@@ -287,7 +287,7 @@ function showTodayResult(data){
     card.classList.add("flip")
     document.getElementById("result").innerHTML = `
         <h2>✨ 今日啾势</h2>
-        <p>💿 推荐歌曲：${data.song} (${data.musicType})</p>
+        <p>💿 推荐歌曲：${data.song} </p>
         <p>🎨 幸运色：${data.colorChoice}</p>
         <p>🌟 运势：${data.fortuneText}</p>
         <h3>🎬 今日舞台</h3>
@@ -398,3 +398,4 @@ drawStars()
 
 </body>
 </html>
+
