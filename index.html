@@ -140,34 +140,53 @@ window.addEventListener("load",()=>{
   if(todayData && lastDate===today){showTodayResult(todayData)}
 })
 
-function drawFortune(){let times=parseInt(localStorage.getItem("drawTimes")||"0"); if(times>=2)return; generateFortune()}
+function drawFortune(){
+  let times=parseInt(localStorage.getItem("drawTimes")||"0");
+  if(times>=2) return;
+  generateFortune(); 
+}
 function repeatFortune(){let times=parseInt(localStorage.getItem("drawTimes")||"0"); if(times>=2)return; generateFortune()}
 
 function generateFortune(){
-  const card=document.getElementById("card"); card.classList.remove("flip");
+  const card=document.getElementById("card");
+  card.classList.remove("flip");
+
   let musicType=document.getElementById("musicType").value;
   let colorChoice=document.getElementById("colorChoice").value;
+
   const songList=songs[musicType]||[].concat(...Object.values(songs));
   const song=random(songList);
+
   let video=null;
   if(colorChoice==="未知"){
-    const colors=Object.keys(stageVideos); colorChoice=random(colors);
+    const colors=Object.keys(stageVideos); 
+    colorChoice=random(colors);
     video=random(stageVideos[colorChoice])
   } else if(stageVideos[colorChoice] && stageVideos[colorChoice].length>0){
     video=random(stageVideos[colorChoice])
   } else {
     video=random(allVideos)
   }
+
   const fortunes=["今日好运连连 ✨","小心谨慎,稳中求胜 ⚠️","遇见惊喜的可能 💖","适合休息与放松 🌿","挑战与成长并存 💪"];
   const fortuneText=random(fortunes);
+
   const todayData={musicType,colorChoice,song,video,fortuneText};
   const today=new Date().toDateString();
+
+  // 保存当天数据
   localStorage.setItem("fortuneDate",today);
   localStorage.setItem("todayData",JSON.stringify(todayData));
+
+  // 更新抽卡次数
   let drawTimes=parseInt(localStorage.getItem("drawTimes")||"0");
-  drawTimes++; localStorage.setItem("drawTimes",drawTimes); updateRemaining(2-drawTimes);
+  drawTimes++; 
+  localStorage.setItem("drawTimes",drawTimes); 
+  updateRemaining(2-drawTimes);
+
+  // 翻转卡片 + 立即显示结果
   card.classList.add("flip");
-  setTimeout(()=>{showTodayResult(todayData)},800)
+  showTodayResult(todayData); // 去掉 setTimeout
 }
 
 function updateRemaining(count){document.getElementById("remaining").innerText=`今日剩余抽取次数：${count}`}
