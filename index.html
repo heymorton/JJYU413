@@ -15,153 +15,33 @@ body{
   padding:0;
   overflow-x:hidden;
 }
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
-}
-.bgm{
-  position:fixed;
-  top:20px;
-  right:20px;
-  background:#222;
-  color:#fff;
-  padding:8px 15px;
-  border-radius:20px;
-  cursor:pointer;
-  font-size:14px;
-  letter-spacing:1px;
-  border:1px solid rgba(255,255,255,0.15);
-  transition:all 0.3s;
-}
-.bgm:hover{
-  background:#333;
-  transform:scale(1.05);
-}
-.container{
-  max-width:700px;
-  margin:auto;
-  padding:30px 20px;
-}
-.main-title{
-  font-size:clamp(40px,9vw,68px);
-  letter-spacing:4px;
-  text-shadow:0 0 20px #d4af37;
-}
-.sub-title{
-  color:#cbb78c;
-  margin-top:-10px;
-}
-.divider{
-  margin:20px 0 30px 0;
-  font-size:22px;
-  color:#d4af37;
-  letter-spacing:8px;
-}
-.description{
-  font-size:16px;
-  margin-bottom:30px;
-}
-select{
-  width:80%;
-  padding:10px;
-  margin-bottom:15px;
-  border-radius:8px;
-  border:1px solid #d4af37;
-  background:#14142a;
-  color:white;
-}
-.card{
-  width:240px;
-  height:360px;
-  margin:40px auto;
-  perspective:1200px;
-  cursor:pointer;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
-.card-inner{
-  width:100%;
-  height:100%;
-  position:relative;
-  transition:transform 0.8s;
-  transform-style:preserve-3d;
-  border-radius:20px;
-}
-.card.flip .card-inner{
-  transform:rotateY(180deg);
-}
-.card-front,.card-back{
-  position:absolute;
-  width:100%;
-  height:100%;
-  border-radius:20px;
-  border:2px solid #d4af37;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
-  backface-visibility:hidden;
-  text-align:center;
-  padding:10px;
-}
-.card-front{
-  background: linear-gradient(145deg,#1f1f3d,#2e2e5a);
-  color:#fff;
-  font-size:28px;
-  font-weight:bold;
-}
-.card-back{
-  background:#d4af37;
-  color:black;
-  transform:rotateY(180deg);
-  font-size:18px;
-  line-height:1.5;
-}
-.result{
-  margin-top:30px;
-}
-iframe{
-  margin-top:20px;
-  border-radius:10px;
-}
-.watch{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 18px;
-  background:#d4af37;
-  color:black;
-  text-decoration:none;
-  border-radius:8px;
-  font-weight:bold;
-}
-.footer{
-  margin-top:80px;
-  font-size:14px;
-  color:#9a8f6a;
-}
-.button-repeat{
-  margin-top:15px;
-  padding:10px 18px;
-  background:#cbb78c;
-  color:black;
-  border:none;
-  border-radius:8px;
-  font-weight:bold;
-  cursor:pointer;
-  transition:all 0.3s;
-}
-.button-repeat:hover{
-  background:#d4af37;
-}
+canvas{ position:fixed; top:0; left:0; z-index:-1; }
+.bgm{ position:fixed; top:20px; right:20px; background:#222; color:#fff; padding:8px 15px; border-radius:20px; cursor:pointer; font-size:14px; letter-spacing:1px; border:1px solid rgba(255,255,255,0.15); transition:all 0.3s; }
+.bgm:hover{ background:#333; transform:scale(1.05); }
+.container{ max-width:700px; margin:auto; padding:30px 20px; }
+.main-title{ font-size:clamp(40px,9vw,68px); letter-spacing:4px; text-shadow:0 0 20px #d4af37; }
+.sub-title{ color:#cbb78c; margin-top:-10px; }
+.divider{ margin:20px 0 30px 0; font-size:22px; color:#d4af37; letter-spacing:8px; }
+.description{ font-size:16px; margin-bottom:30px; }
+select{ width:80%; padding:10px; margin-bottom:15px; border-radius:8px; border:1px solid #d4af37; background:#14142a; color:white; }
+.card{ width:240px; height:360px; margin:40px auto; perspective:1200px; cursor:pointer; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+.card-inner{ width:100%; height:100%; position:relative; transition:transform 0.8s; transform-style:preserve-3d; border-radius:20px; }
+.card.flip .card-inner{ transform:rotateY(180deg); }
+.card-front,.card-back{ position:absolute; width:100%; height:100%; border-radius:20px; border:2px solid #d4af37; display:flex; align-items:center; justify-content:center; font-size:24px; backface-visibility:hidden; text-align:center; padding:10px; }
+.card-front{ background: linear-gradient(145deg,#1f1f3d,#2e2e5a); color:#fff; font-size:28px; font-weight:bold; }
+.card-back{ background:#d4af37; color:black; transform:rotateY(180deg); font-size:18px; line-height:1.5; }
+.result{ margin-top:30px; }
+iframe{ margin-top:20px; border-radius:10px; }
+.watch{ display:inline-block; margin-top:15px; padding:10px 18px; background:#d4af37; color:black; text-decoration:none; border-radius:8px; font-weight:bold; }
+.footer{ margin-top:80px; font-size:14px; color:#9a8f6a; }
+.button-repeat{ margin-top:15px; padding:10px 18px; background:#cbb78c; color:black; border:none; border-radius:8px; font-weight:bold; cursor:pointer; transition:all 0.3s; }
+.button-repeat:hover{ background:#d4af37; }
+.remaining{ margin-top:10px; font-size:16px; color:#d4af37; }
 </style>
 </head>
 
 <body>
-
 <canvas id="stars"></canvas>
-
 <div class="bgm" onclick="toggleBGM()" id="bgmBtn">🎵 BGM</div>
 <audio id="bgm" loop>
 <source src="https://cdn.pixabay.com/audio/2022/10/25/audio_946c0c62d1.mp3">
@@ -171,60 +51,19 @@ iframe{
 <h1 class="main-title">🔮 今日啾势</h1>
 <p class="sub-title">Jiwoo Daily Fortune</p>
 <div class="divider">✦ ✦ ✦</div>
-<p class="description">
-回答5个问题<br>
-抽取属于你的今日幸运舞台
-</p>
+<p class="description">回答5个问题<br>抽取属于你的今日幸运舞台</p>
 
 <div id="quiz">
 <p>1 今天的心情</p>
-<select>
-<option>开心</option>
-<option>平静</option>
-<option>兴奋</option>
-<option>有点累</option>
-<option>难过</option>
-</select>
-
+<select><option>开心</option><option>平静</option><option>兴奋</option><option>有点累</option><option>难过</option></select>
 <p>2 今天的天气</p>
-<select>
-<option>晴天</option>
-<option>阴天</option>
-<option>雨天</option>
-<option>雪天</option>
-<option>有风</option>
-</select>
-
+<select><option>晴天</option><option>阴天</option><option>雨天</option><option>雪天</option><option>有风</option></select>
 <p>3 想听什么类型的歌</p>
-<select id="musicType">
-<option>运动</option>
-<option>放松</option>
-<option>慢歌</option>
-<option>轻快</option>
-</select>
-
+<select id="musicType"><option>运动</option><option>放松</option><option>慢歌</option><option>轻快</option></select>
 <p>4 今天想去哪里</p>
-<select>
-<option>公园</option>
-<option>练习室</option>
-<option>咖啡厅</option>
-<option>JYP</option>
-<option>电影院</option>
-</select>
-
+<select><option>公园</option><option>练习室</option><option>咖啡厅</option><option>JYP</option><option>电影院</option></select>
 <p>5 想和什么颜色的JIWOO约会</p>
-<select id="colorChoice">
-<option>白色</option>
-<option>黑色</option>
-<option>蓝色</option>
-<option>粉色</option>
-<option>绿色</option>
-<option>紫色</option>
-<option>红色</option>
-<option>黄色</option>
-<option>灰色</option>
-<option>未知</option>
-</select>
+<select id="colorChoice"><option>白色</option><option>黑色</option><option>蓝色</option><option>粉色</option><option>绿色</option><option>紫色</option><option>红色</option><option>黄色</option><option>灰色</option><option>未知</option></select>
 </div>
 
 <div class="card" id="card" onclick="drawFortune()">
@@ -235,36 +74,23 @@ iframe{
 </div>
 
 <button class="button-repeat" onclick="repeatFortune()">🔄 再抽一次</button>
+<p class="remaining" id="remaining">今日剩余抽取次数：2</p>
 
 <div id="result" class="result"></div>
-
-<div class="footer">
-@Jiwoo_Fairyland / JiwooChinaBar<br>
-玩法仅供娱乐
-</div>
+<div class="footer">@Jiwoo_Fairyland / JiwooChinaBar<br>玩法仅供娱乐</div>
 </div>
 
 <script>
 /* BGM */
-function toggleBGM(){
-    const bgm=document.getElementById("bgm")
-    const btn=document.getElementById("bgmBtn")
-    if(bgm.paused){
-        bgm.play()
-        btn.innerText="BGM OFF"
-    }else{
-        bgm.pause()
-        btn.innerText="BGM ON"
-    }
-}
+function toggleBGM(){const bgm=document.getElementById("bgm"),btn=document.getElementById("bgmBtn"); if(bgm.paused){bgm.play(); btn.innerText="BGM OFF"}else{bgm.pause(); btn.innerText="BGM ON"}}
 
 /* 随机 */
-function random(arr){ return arr[Math.floor(Math.random()*arr.length)] }
+function random(arr){return arr[Math.floor(Math.random()*arr.length)]}
 
 const songs={
-运动:["Super Shy - NewJeans","Drama - aespa","Love Dive - IVE","One Of A Kind - G-DRAGON","911 - Lady Gaga","BANG BANG BANG - BIGBANG","RHYTHM TA - iKON","Energetic - Wanna One","FLOWER SHOWER - 泫雅","Love In My Heart - BABYMONSTER","BOOMERAN - Wanna One","SAPPY - Red Velvet","THUNDER - SEVENTEEN","WHISTLE - BLACKPINK","How You Like That - BLACKPINK"],
-放松:["Love Poem - IU","Fine - Taeyeon","Find Me - TAEYEON","End to Start - NCT127","Fine - TAEYEON","우린 결국 다시 만날 운명이었지 (Destiny) - MAMAMOO","평온 (Serene) - 泫雅","LAST DANCE - BIGBANG","Friend - BTOB","Something New - TAEYEON","귀 좀 막아줘 (Organic song) - PENTAGON / E'DAWN","GIRL GIRL GIRL - Triple H"],
-慢歌:["Beautiful - Crush","How can I love - AKMU"，"11:11 - TAEYEON","Lonely - TAEYEON & 钟铉","우주를 줄게 - 刘宪华","IF YOU - BIGBANG","너의 이름을 - Wanna One","Brave Enough - 李遐怡","Journey - WOODZ","그 해 여름 (두 번째 이야기) - INFINITE","I Believe - 申升勋","Let Go - BTS","스포일러 (SPOILER) - Epik High"],
+运动:["Super Shy - NewJeans","Drama - aespa","Love Dive - IVE","One Of A Kind - G-DRAGON","911 - Lady Gaga","BANG BANG BANG - BIGBANG","RHYTHM TA - iKON","Energetic - Wanna One","FLOWER SHOWER - 泫雅","Love In My Heart - BABYMONSTER","BOOMERAN - Wanna One","SAPPY - Red Velvet","THUNDER - SEVENTEEN","WHISTLE - BLACKPINK","How You Like That - BLACKPINK"], 
+放松:["Love Poem - IU","Fine - Taeyeon","Find Me - TAEYEON","End to Start - NCT127","Fine - TAEYEON","우린 결국 다시 만날 운명이었지 (Destiny) - MAMAMOO","평온 (Serene) - 泫雅","LAST DANCE - BIGBANG","Friend - BTOB","Something New - TAEYEON","귀 좀 막아줘 (Organic song) - PENTAGON / E'DAWN","GIRL GIRL GIRL - Triple H"], 
+慢歌:["Beautiful - Crush","How can I love - AKMU"，"11:11 - TAEYEON","Lonely - TAEYEON & 钟铉","우주를 줄게 - 刘宪华","IF YOU - BIGBANG","너의 이름을 - Wanna One","Brave Enough - 李遐怡","Journey - WOODZ","그 해 여름 (두 번째 이야기) - INFINITE","I Believe - 申升勋","Let Go - BTS","스포일러 (SPOILER) - Epik High"], 
 轻快:["Hype Boy - NewJeans","ASAP - STAYC","LOVE - STAYC","Black Suit - SUPER JUNIOR","7시에 들어줘 (Feat. Peder Elias) - BSS / Peder Elias","MAKUAKE - eill","제주도의 푸른 밤 - TAEYEON","Good to Me - SEVENTEEN","Home - SEVENTEEN","1분 1초 - Epik High","21 - DEAN","짠 - GFRIEND","Daydream - j-hope","We Go - aespa","툭하면 톡 - TWICE","쟤가 걔야 - MAMAMOO"]
 }
 
@@ -279,123 +105,32 @@ const stageVideos={
 黄色:["BV1FUcreLEus","BV1Eik6YfE9C","BV1EBk6YtEeK","BV1Hek6YcEPh","BV14PkrY6Esw","BV1m3specEKv","BV1gx4y147RZ","BV1Mx4y1n7d9","BV1CD421u7ss","BV1X7421P7qj","BV1y94y1B7uN","BV17W4y1X7B7","BV1Pj411A7GU","BV1aM4y127z8","BV1Jg411t7Rt","BV1Ng41187fj","BV1RN4y1c72n","BV1GD4y1C7ob","BV1er4y1M7x9"],
 灰色:["BV1WWZcYbEgm","BV1YnoxYyEEj","BV1yVQ2Y3ELx","BV12xWoeREHB","BV1cXW9e6E44","BV1CoW5eeEUd","BV1CoW5eeEUd","BV1Zx42117eE","BV1ov421k745","BV1ov421k745","BV1ov421k745","BV1Bv421C7XY","BV1Mp421f79L","BV1YV411T7vm","BV1fo4y1J7rm","BV1hs4y1N7hb","BV1Ej411A75H","BV1Lo4y1W7wU","BV1Lv4y1V7yb","BV1fY411N7WM","BV16S4y1p77R","BV1Bv4y1u7nG","BV1df4y1o7HZ","BV1Qr4y1g7k2","BV1gP4y1u7Tu"]
 }
-const allVideos = [].concat(...Object.values(stageVideos))
+const allVideos=[].concat(...Object.values(stageVideos))
 
-// ---------- 展示结果 ----------
-function showTodayResult(data){
-    const card=document.getElementById("card")
-    card.classList.add("flip")
-    document.getElementById("result").innerHTML = `
-        <h2>✨ 今日啾势</h2>
-        <p>💿 推荐歌曲：${data.song} </p>
-        <p>🎨 幸运色：${data.colorChoice}</p>
-        <p>🌟 运势：${data.fortuneText}</p>
-        <h3>🎬 今日舞台</h3>
-        ${data.video && allVideos.includes(data.video)
-            ? `<iframe src="https://player.bilibili.com/player.html?bvid=${data.video}" width="100%" height="420" allowfullscreen allow="autoplay; fullscreen"></iframe>
-               <br><a class="watch" href="https://www.bilibili.com/video/${data.video}" target="_blank">▶ 去Bilibili观看</a>`
-            : `<p>⚠ 今日舞台视频不可用</p>`
-        }
-    `
+function showTodayResult(data){document.getElementById("card").classList.add("flip"); document.getElementById("result").innerHTML=`<h2>✨ 今日啾势</h2><p>💿 推荐歌曲：${data.song}</p><p>🎨 幸运色：${data.colorChoice}</p><p>🌟 运势：${data.fortuneText}</p><h3>🎬 今日舞台</h3>${data.video&&allVideos.includes(data.video)?`<iframe src="https://player.bilibili.com/player.html?bvid=${data.video}" width="100%" height="420" allowfullscreen allow="autoplay; fullscreen"></iframe><br><a class="watch" href="https://www.bilibili.com/video/${data.video}" target="_blank">▶ 去Bilibili观看</a>`:`<p>⚠ 今日舞台视频不可用</p>`}`
 }
 
-// ---------- 页面加载 ----------
-window.addEventListener("load", ()=>{
-    const today = new Date().toDateString()
-    let todayData = JSON.parse(localStorage.getItem("todayData") || "null")
-    let times = parseInt(localStorage.getItem("drawTimes") || "0")
-    const lastDate = localStorage.getItem("fortuneDate")
-    if(lastDate !== today){
-        times=0
-        localStorage.setItem("drawTimes",0)
-    }
-    if(todayData && lastDate === today){
-        showTodayResult(todayData)
-    }
-})
+window.addEventListener("load",()=>{const today=new Date().toDateString(); let todayData=JSON.parse(localStorage.getItem("todayData")||"null"); let times=parseInt(localStorage.getItem("drawTimes")||"0"); const lastDate=localStorage.getItem("fortuneDate"); if(lastDate!==today){times=0; localStorage.setItem("drawTimes",0)} updateRemaining(2-times); if(todayData&&lastDate===today){showTodayResult(todayData)}})
 
-// ---------- 抽卡 ----------
-function drawFortune(){
-    const times = parseInt(localStorage.getItem("drawTimes") || "0")
-    if(times >= 2) return
-    generateFortune()
-}
+function drawFortune(){let times=parseInt(localStorage.getItem("drawTimes")||"0"); if(times>=2)return; generateFortune()}
+function repeatFortune(){let times=parseInt(localStorage.getItem("drawTimes")||"0"); if(times>=2)return; generateFortune()}
 
-// ---------- 再抽一次 ----------
-function repeatFortune(){
-    const times = parseInt(localStorage.getItem("drawTimes") || "0")
-    if(times >= 2) return
-    generateFortune()
-}
+function generateFortune(){const card=document.getElementById("card"); card.classList.remove("flip");
+let musicType=document.getElementById("musicType").value; let colorChoice=document.getElementById("colorChoice").value;
+const songList=songs[musicType]||[].concat(...Object.values(songs)); const song=random(songList);
+let video=null;
+if(colorChoice==="未知"){const colors=Object.keys(stageVideos); colorChoice=random(colors); video=random(stageVideos[colorChoice])} else if(stageVideos[colorChoice]&&stageVideos[colorChoice].length>0){video=random(stageVideos[colorChoice])} else{video=random(allVideos)}
+const fortunes=["今日好运连连 ✨","小心谨慎，稳中求胜 ⚠️","遇见惊喜的可能 💖","适合休息与放松 🌿","挑战与成长并存 💪"]; const fortuneText=random(fortunes);
+const todayData={musicType,colorChoice,song,video,fortuneText}; const today=new Date().toDateString(); localStorage.setItem("fortuneDate",today); localStorage.setItem("todayData",JSON.stringify(todayData));
+let drawTimes=parseInt(localStorage.getItem("drawTimes")||"0"); drawTimes++; localStorage.setItem("drawTimes",drawTimes); updateRemaining(2-drawTimes);
+card.classList.add("flip"); setTimeout(()=>{showTodayResult(todayData)},800)}
 
-// ---------- 核心生成逻辑 ----------
-function generateFortune(){
-    const card=document.getElementById("card")
-    card.classList.remove("flip")
+function updateRemaining(count){document.getElementById("remaining").innerText=`今日剩余抽取次数：${count}`}
 
-    let musicType=document.getElementById("musicType").value
-    let colorChoice=document.getElementById("colorChoice").value
-
-    const songList = songs[musicType] || [].concat(...Object.values(songs))
-    const song=random(songList)
-
-    let video = null
-
-    if(colorChoice==="未知"){
-        // 随机选择一个颜色，再从该颜色的视频里随机抽一个
-        const colors = Object.keys(stageVideos)
-        colorChoice = random(colors)  // 随机颜色
-        video = random(stageVideos[colorChoice])
-    } else if(stageVideos[colorChoice] && stageVideos[colorChoice].length>0){
-        video=random(stageVideos[colorChoice])
-    } else {
-        video=random(allVideos)
-    }
-
-    const fortunes=["今日好运连连 ✨","小心谨慎，稳中求胜 ⚠️","遇见惊喜的可能 💖","适合休息与放松 🌿","挑战与成长并存 💪"]
-    const fortuneText=random(fortunes)
-
-    const todayData={musicType,colorChoice,song,video,fortuneText}
-    const today=new Date().toDateString()
-    localStorage.setItem("fortuneDate",today)
-    localStorage.setItem("todayData",JSON.stringify(todayData))
-
-    let drawTimes = parseInt(localStorage.getItem("drawTimes")||"0")
-    drawTimes++
-    localStorage.setItem("drawTimes",drawTimes)
-
-    card.classList.add("flip")
-    setTimeout(()=>{showTodayResult(todayData)},800)
-}
-
-// ---------- 星空 ----------
-const canvas = document.getElementById("stars")
-const ctx = canvas.getContext("2d")
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
-let stars = []
-for(let i=0;i<120;i++){
-    stars.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*1.5, alpha:Math.random()*0.8+0.2, delta:(Math.random()*0.02)+0.005})
-}
-window.addEventListener("resize",()=>{
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-})
-function drawStars(){
-    ctx.clearRect(0,0,canvas.width,canvas.height)
-    stars.forEach(s=>{
-        s.alpha+=s.delta
-        if(s.alpha>1||s.alpha<0.2) s.delta=-s.delta
-        ctx.fillStyle=`rgba(255,255,255,${s.alpha})`
-        ctx.beginPath()
-        ctx.arc(s.x,s.y,s.r,0,Math.PI*2)
-        ctx.fill()
-    })
-    requestAnimationFrame(drawStars)
-}
-drawStars()
+const canvas=document.getElementById("stars"),ctx=canvas.getContext("2d"); canvas.width=window.innerWidth; canvas.height=window.innerHeight; let stars=[]; for(let i=0;i<120;i++){stars.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*1.5, alpha:Math.random()*0.8+0.2, delta:(Math.random()*0.02)+0.005})}
+window.addEventListener("resize",()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight});
+function drawStars(){ctx.clearRect(0,0,canvas.width,canvas.height); stars.forEach(s=>{s.alpha+=s.delta; if(s.alpha>1||s.alpha<0.2) s.delta=-s.delta; ctx.fillStyle=`rgba(255,255,255,${s.alpha})`; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill()}); requestAnimationFrame(drawStars)} drawStars();
 </script>
 
 </body>
 </html>
-
